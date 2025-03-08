@@ -1,0 +1,20 @@
+
+# Training parameters
+learning_rate: 0.001
+num_epochs: 50
+batch_size: 32
+
+# Optimizer parameters
+
+# Model parameters
+
+# Data paths
+train_data_path: "C:/Users/seanf/Desktop/School/Pattern Recognition/CarModelRecognition/data/cars_train/cars_train"
+test_data_path: "C:/Users/seanf/Desktop/School/Pattern Recognition/CarModelRecognition/data/cars_test/cars_test"
+car_annos: "C:/Users/seanf/Desktop/School/Pattern Recognition/CarModelRecognition/data/cars_annos.mat"
+car_csv: "C:/Users/seanf/Desktop/School/Pattern Recognition/CarModelRecognition/data/cars_annotations.csv"
+car_names_csv: "C:/Users/seanf/Desktop/School/Pattern Recognition/CarModelRecognition/data/cars_annotations_with_names.csv"
+model_save_path: "C:/Users/seanf/Desktop/School/Pattern Recognition/CarModelRecognition"
+# Other
+# fix me find dynamically
+num_classes: 196

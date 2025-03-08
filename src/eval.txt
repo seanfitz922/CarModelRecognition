@@ -1,0 +1,206 @@
+Epoch 1/50:
+    Train Loss: 5.6785
+    Val Loss:   5.2451
+    Val Acc:    0.0109
+    Best model saved!
+Epoch 2/50:
+    Train Loss: 5.2562
+    Val Loss:   5.2376
+    Val Acc:    0.0109
+Epoch 3/50:
+    Train Loss: 5.2508
+    Val Loss:   5.2500
+    Val Acc:    0.0104
+Epoch 4/50:
+    Train Loss: 5.2416
+    Val Loss:   5.2340
+    Val Acc:    0.0107
+Epoch 5/50:
+    Train Loss: 5.2280
+    Val Loss:   5.2202
+    Val Acc:    0.0111
+    Best model saved!
+Epoch 6/50:
+    Train Loss: 5.2156
+    Val Loss:   5.2090
+    Val Acc:    0.0109
+Epoch 7/50:
+    Train Loss: 5.2042
+    Val Loss:   5.1982
+    Val Acc:    0.0112
+    Best model saved!
+Epoch 8/50:
+    Train Loss: 5.1951
+    Val Loss:   5.1896
+    Val Acc:    0.0112
+Epoch 9/50:
+    Train Loss: 5.1875
+    Val Loss:   5.1822
+    Val Acc:    0.0112
+Epoch 10/50:
+    Train Loss: 5.1804
+    Val Loss:   5.1755
+    Val Acc:    0.0112
+Epoch 11/50:
+    Train Loss: 5.1746
+    Val Loss:   5.1698
+    Val Acc:    0.0116
+    Best model saved!
+Epoch 12/50:
+    Train Loss: 5.1694
+    Val Loss:   5.1649
+    Val Acc:    0.0116
+Epoch 13/50:
+    Train Loss: 5.1649
+    Val Loss:   5.1606
+    Val Acc:    0.0114
+Epoch 14/50:
+    Train Loss: 5.1606
+    Val Loss:   5.1555
+    Val Acc:    0.0116
+Epoch 15/50:
+    Train Loss: 5.1555
+    Val Loss:   5.1510
+    Val Acc:    0.0121
+    Best model saved!
+Epoch 16/50:
+    Train Loss: 5.1520
+    Val Loss:   5.1474
+    Val Acc:    0.0121
+Epoch 17/50:
+    Train Loss: 5.1461
+    Val Loss:   5.1426
+    Val Acc:    0.0121
+Epoch 18/50:
+    Train Loss: 5.1427
+    Val Loss:   5.1406
+    Val Acc:    0.0122
+    Best model saved!
+Epoch 19/50:
+    Train Loss: 5.1412
+    Val Loss:   5.1339
+    Val Acc:    0.0121
+Epoch 20/50:
+    Train Loss: 5.1341
+    Val Loss:   5.1288
+    Val Acc:    0.0121
+Epoch 21/50:
+    Train Loss: 5.1300
+    Val Loss:   5.1252
+    Val Acc:    0.0121
+Epoch 22/50:
+    Train Loss: 5.1269
+    Val Loss:   5.1223
+    Val Acc:    0.0121
+Epoch 23/50:
+    Train Loss: 5.1243
+    Val Loss:   5.1198
+    Val Acc:    0.0121
+Epoch 24/50:
+    Train Loss: 5.1221
+    Val Loss:   5.1178
+    Val Acc:    0.0121
+Epoch 25/50:
+    Train Loss: 5.1203
+    Val Loss:   5.1161
+    Val Acc:    0.0121
+Epoch 26/50:
+    Train Loss: 5.1187
+    Val Loss:   5.1146
+    Val Acc:    0.0121
+Epoch 27/50:
+    Train Loss: 5.1173
+    Val Loss:   5.1132
+    Val Acc:    0.0121
+Epoch 28/50:
+    Train Loss: 5.1162
+    Val Loss:   5.1121
+    Val Acc:    0.0121
+Epoch 29/50:
+    Train Loss: 5.1151
+    Val Loss:   5.1112
+    Val Acc:    0.0121
+Epoch 30/50:
+    Train Loss: 5.1143
+    Val Loss:   5.1103
+    Val Acc:    0.0121
+Epoch 31/50:
+    Train Loss: 5.1135
+    Val Loss:   5.1096
+    Val Acc:    0.0121
+Epoch 32/50:
+    Train Loss: 5.1128
+    Val Loss:   5.1089
+    Val Acc:    0.0121
+Epoch 33/50:
+    Train Loss: 5.1123
+    Val Loss:   5.1084
+    Val Acc:    0.0121
+Epoch 34/50:
+    Train Loss: 5.1117
+    Val Loss:   5.1079
+    Val Acc:    0.0121
+Epoch 35/50:
+    Train Loss: 5.1113
+    Val Loss:   5.1075
+    Val Acc:    0.0121
+Epoch 36/50:
+    Train Loss: 5.1109
+    Val Loss:   5.1071
+    Val Acc:    0.0121
+Epoch 37/50:
+    Train Loss: 5.1106
+    Val Loss:   5.1068
+    Val Acc:    0.0121
+Epoch 38/50:
+    Train Loss: 5.1103
+    Val Loss:   5.1065
+    Val Acc:    0.0121
+Epoch 39/50:
+    Train Loss: 5.1101
+    Val Loss:   5.1063
+    Val Acc:    0.0121
+Epoch 40/50:
+    Train Loss: 5.1098
+    Val Loss:   5.1061
+    Val Acc:    0.0121
+Epoch 41/50:
+    Train Loss: 5.1097
+    Val Loss:   5.1059
+    Val Acc:    0.0121
+Epoch 42/50:
+    Train Loss: 5.1095
+    Val Loss:   5.1057
+    Val Acc:    0.0121
+Epoch 43/50:
+    Train Loss: 5.1093
+    Val Loss:   5.1056
+    Val Acc:    0.0121
+Epoch 44/50:
+    Train Loss: 5.1092
+    Val Loss:   5.1055
+    Val Acc:    0.0121
+Epoch 45/50:
+    Train Loss: 5.1091
+    Val Loss:   5.1054
+    Val Acc:    0.0121
+Epoch 46/50:
+    Train Loss: 5.1090
+    Val Loss:   5.1053
+    Val Acc:    0.0121
+Epoch 47/50:
+    Train Loss: 5.1089
+    Val Loss:   5.1052
+    Val Acc:    0.0121
+Epoch 48/50:
+    Train Loss: 5.1088
+    Val Loss:   5.1051
+    Val Acc:    0.0121
+Epoch 49/50:
+    Train Loss: 5.1087
+    Val Loss:   5.1050
+    Val Acc:    0.0121
+Epoch 50/50:
+    Train Loss: 5.1087
+    Val Loss:   5.1050
+    Val Acc:    0.0121
