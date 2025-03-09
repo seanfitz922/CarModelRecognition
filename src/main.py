@@ -15,7 +15,8 @@ def main():
     # Create the model, loss function, and optimizer.
     model = CarModelCNN(num_classes=NUM_CLASSES)
     criterion = nn.CrossEntropyLoss()
-    optimizer = optim.Adam(model.parameters(), lr=config['learning_rate'])
+    optimizer = optim.Adam(model.parameters(), lr=config['learning_rate'], weight_decay=1e-4)
+    scheduler = optim.lr_scheduler.StepLR(optimizer, step_size=10, gamma=0.1)
     
     best_val_acc = 0.0
     os.makedirs(config['model_save_path'], exist_ok=True)
@@ -29,6 +30,8 @@ def main():
         print(f"    Train Loss: {train_loss:.4f}")
         print(f"    Val Loss:   {val_loss:.4f}")
         print(f"    Val Acc:    {val_acc:.4f}")
+
+        scheduler.step()
         
         # Save the model if validation accuracy improved.
         if val_acc > best_val_acc:

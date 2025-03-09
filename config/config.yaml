@@ -1,8 +1,8 @@
 
 # Training parameters
 learning_rate: 0.001
-num_epochs: 50
-batch_size: 32
+num_epochs: 100
+batch_size: 16
 
 # Optimizer parameters
 
