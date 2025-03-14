@@ -17,4 +17,5 @@ car_names_csv: "C:/Users/seanf/Desktop/School/Pattern Recognition/CarModelRecogn
 model_save_path: "C:/Users/seanf/Desktop/School/Pattern Recognition/CarModelRecognition"
 # Other
 # fix me find dynamically
-num_classes: 196
+num_classes: 1716
+num_car_makes: 163
