@@ -1,22 +1,21 @@
 import torch
 
-def evaluate_model(model, test_loader, criterion, test_dataset):
-    model.eval()  # Set model to evaluation mode
-    test_loss = 0.0
-    correct = 0
-    total = 0
+def evaluate_model(model, val_loader, criterion, device):
+    model.eval()
+    val_running_loss = 0.0
+    val_correct = 0
+    val_total = 0
 
     with torch.no_grad():
-        for inputs, labels in test_loader:
-            outputs = model(inputs)
+        for images, labels in val_loader:
+            images, labels = images.to(device), labels.to(device)
+            outputs = model(images)
             loss = criterion(outputs, labels)
-            test_loss += loss.item() * inputs.size(0)
-
-            _, preds = torch.max(outputs, 1)
-            total += labels.size(0)
-            correct += (preds == labels).sum().item()
-
-    epoch_test_loss = test_loss / len(test_dataset)
-    epoch_test_acc = correct / total
-
-    return epoch_test_loss, epoch_test_acc
+            val_running_loss += loss.item()
+            _, predicted = outputs.max(1)
+            val_correct += (predicted == labels).sum().item()
+            val_total += labels.size(0)
+    
+    val_loss = val_running_loss / len(val_loader)
+    val_acc = 100 * val_correct / val_total
+    return val_loss, val_acc

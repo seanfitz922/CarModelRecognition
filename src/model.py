@@ -35,7 +35,8 @@ class CarModelCNN(nn.Module):
         x = self.pool(F.relu(self.bn2(self.conv2(x))))
         x = self.pool(F.relu(self.bn3(self.conv3(x))))
         x = self.pool(F.relu(self.bn4(self.conv4(x))))
-        x = self.adaptive_pool(x)  # Ensures the feature map size is always (batch, 512, 4, 4)
+        # Ensures the feature map size is always (batch, 512, 4, 4)
+        x = self.adaptive_pool(x)  
         return x
 
     def forward(self, x):

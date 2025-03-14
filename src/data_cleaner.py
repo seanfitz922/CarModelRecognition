@@ -1,44 +1,25 @@
-import os
 from PIL import Image
 from torch.utils.data import Dataset
-import pandas as pd
-from utils import load_config  # adjust if needed
+
+# class from RIPUPZ on kaggle: https://www.kaggle.com/code/ripupz/carsidentifier/notebook
 
 class CarsDataset(Dataset):
-    def __init__(self, directory, csv_path, transform=None):
-
-        self.directory = directory
+    def __init__(self, dataframe, transform=None):
+        self.dataframe = dataframe
         self.transform = transform
 
-        # Load CSV into a pandas DataFrame
-
-        # Build a dictionary mapping filename to label
-        self.image_label_dict = create_image_dictionary(csv_path)
-        
-        # Build a list of image file paths (only .jpg images)
-        self.image_paths = [
-            os.path.join(directory, f) 
-            for f in os.listdir(directory) 
-            if f.lower().endswith('.jpg')
-        ]
-    
     def __len__(self):
-        return len(self.image_paths)
-    
+        return len(self.dataframe)
+
     def __getitem__(self, idx):
-        img_path = self.image_paths[idx]
-        img = Image.open(img_path).convert('RGB')
+        image_path = self.dataframe.iloc[idx]["image_path"]
+        label = self.dataframe.iloc[idx]["class_id"]  # Use integer labels
+
+        # Open image
+        image = Image.open(image_path).convert("RGB")
+
+        # Apply transformations
         if self.transform:
-            img = self.transform(img)
-        # Get the filename (without the directory path)
-        fname = os.path.basename(img_path)
-        # Retrieve the label from our dictionary; if not found, return -1 (or handle as needed)
-        label = self.image_label_dict.get(fname, -1)
-        return img, label
+            image = self.transform(image)
 
-
-def create_image_dictionary(csv_path):
-    # Loads the CSV file and returns a dictionary mapping filename to label.
-    df = pd.read_csv(csv_path)
-    image_label_dict = dict(zip(df['fname'], df['class']))
-    return image_label_dict
+        return image, label
