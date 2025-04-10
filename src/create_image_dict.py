@@ -118,10 +118,41 @@ def save_mapping_to_json(mapping, filename):
     with open(filename, "w") as f:
         json.dump(mapping, f, indent=2)
 
+
+from scipy.io import loadmat
+
+def load_make_model_names(mat_file_path):
+    data = loadmat(mat_file_path)
+    # Expecting the file to contain 'make_names' and 'model_names'
+    make_names_cell = data.get("make_names")
+    model_names_cell = data.get("model_names")
+    
+    if make_names_cell is None or model_names_cell is None:
+        raise ValueError("make_names or model_names not found in the .mat file.")
+    
+    # Build lookup dictionaries.
+    # Directory keys are the string representation of numbers (e.g., "1", "2", ...).
+    make_name_mapping = {}
+    for i, element in enumerate(make_names_cell.flatten()):
+        if element.size > 0:
+            make_name_mapping[str(i+1)] = element[0]
+        else:
+            make_name_mapping[str(i+1)] = "Unknown"
+    
+    model_name_mapping = {}
+    for i, element in enumerate(model_names_cell.flatten()):
+        if element.size > 0:
+            model_name_mapping[str(i+1)] = element[0]
+        else:
+            model_name_mapping[str(i+1)] = "Unknown"
+    
+    return make_name_mapping, model_name_mapping
+
+
 def main():
     # Set your base paths for images and labels.
-    image_base_path = r"C:\Users\seanf\Desktop\School\Pattern Recognition\CarModelRecognition\data\compcars\data\image"
-    label_base_path = r"C:\Users\seanf\Desktop\School\Pattern Recognition\CarModelRecognition\data\compcars\data\label"
+    image_base_path = "C:/Users/seanf/Desktop/School/Pattern Recognition/CarModelRecognition/data/compcars/data/image"
+    label_base_path = "C:/Users/seanf/Desktop/School/Pattern Recognition/CarModelRecognition/data/compcars/data/label"
     
     print("Building image mapping...")
     image_mapping = build_image_mapping(image_base_path)
@@ -132,13 +163,26 @@ def main():
     print("Combining mappings...")
     combined_mapping = combine_mappings(image_mapping, label_mapping)
     
-    # Pretty-print the combined mapping for inspection
-    pprint.pprint(combined_mapping)
+    # Load the human-readable make and model names from the .mat file.
+    mat_file_path = "C:/Users/seanf/Desktop/School/Pattern Recognition/CarModelRecognition/data/compcars/data/misc/make_model_name.mat"
+    make_name_mapping, model_name_mapping = load_make_model_names(mat_file_path)
     
-    # Save the combined mapping as a JSON file
-    output_json_file = "combined_mapping.json"
-    save_mapping_to_json(combined_mapping, output_json_file)
-    print(f"Combined mapping saved to {output_json_file}")
-
+    # Merge the metadata with your combined mapping by storing it as a separate field.
+    final_mapping = {
+        "metadata": {
+            "make_names": make_name_mapping,
+            "model_names": model_name_mapping
+        },
+        "data": combined_mapping
+    }
+    
+    # Pretty-print final mapping for inspection (optional)
+    pprint.pprint(final_mapping)
+    
+    # Save the final mapping as a JSON file
+    output_json_file = "combined_mapping2.json"
+    save_mapping_to_json(final_mapping, output_json_file)
+    print(f"Combined mapping with metadata saved to {output_json_file}")
+    
 if __name__ == "__main__":
     main()

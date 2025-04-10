@@ -1,54 +1,23 @@
-import torch
 import torch.nn as nn
-import torch.nn.functional as F
+from torchvision import models
+from torchvision.models import ResNet50_Weights
 
-class CarModelCNN(nn.Module):
-    def __init__(self, num_classes):
-        super(CarModelCNN, self).__init__()
-        self.conv1 = nn.Conv2d(3, 64, kernel_size=7, stride=2, padding=3)
-        self.bn1 = nn.BatchNorm2d(64)
-        self.conv2 = nn.Conv2d(64, 128, kernel_size=3, stride=1, padding=1)
-        self.bn2 = nn.BatchNorm2d(128)
-        self.conv3 = nn.Conv2d(128, 256, kernel_size=3, stride=1, padding=1)
-        self.bn3 = nn.BatchNorm2d(256)
-        self.conv4 = nn.Conv2d(256, 512, kernel_size=3, stride=1, padding=1)
-        self.bn4 = nn.BatchNorm2d(512)
-
-        self.pool = nn.MaxPool2d(2,2)
-        self.adaptive_pool = nn.AdaptiveAvgPool2d((4, 4))  # Ensure fixed feature map size
-
-        # Dynamically determine input size for fc1
-        self.fc1 = nn.Linear(self._get_fc_input_dim(), 1024)
-        self.drop1 = nn.Dropout(0.5)
-        self.fc2 = nn.Linear(1024, 512)
-        self.drop2 = nn.Dropout(0.5)
-        self.fc3 = nn.Linear(512, num_classes)
-
-    def _get_fc_input_dim(self):
-        with torch.no_grad():
-            sample_input = torch.zeros(1, 3, 224, 224)  # Assuming input images are 224x224
-            sample_output = self._forward_features(sample_input)
-            return sample_output.view(1, -1).shape[1]
-
-    def _forward_features(self, x):
-        x = self.pool(F.relu(self.bn1(self.conv1(x))))
-        x = self.pool(F.relu(self.bn2(self.conv2(x))))
-        x = self.pool(F.relu(self.bn3(self.conv3(x))))
-        x = self.pool(F.relu(self.bn4(self.conv4(x))))
-        # Ensures the feature map size is always (batch, 512, 4, 4)
-        x = self.adaptive_pool(x)  
-        return x
-
-    def forward(self, x):
-        x = self._forward_features(x)
-        #print(f"Shape before flattening: {x.shape}") 
-        x = x.view(x.size(0), -1)  # Flatten
-        #print(f"Shape after flattening: {x.shape}")  
+class MultiTaskResNet50(nn.Module):
+    def __init__(self, num_model_classes, num_year_classes):
+        super(MultiTaskResNet50, self).__init__()
+        # Load a pretrained ResNet50
+        backbone = models.resnet50(weights=ResNet50_Weights.DEFAULT)
+        in_features = backbone.fc.in_features
+        # Remove the original final fc layer
+        backbone.fc = nn.Identity()
+        self.backbone = backbone
         
-        x = F.relu(self.fc1(x))
-        x = self.drop1(x)
-        x = F.relu(self.fc2(x))
-        x = self.drop2(x)
-        x = self.fc3(x)
-
-        return x
+        # Two separate heads for model and year predictions
+        self.model_head = nn.Linear(in_features, num_model_classes)
+        self.year_head = nn.Linear(in_features, num_year_classes)
+    
+    def forward(self, x):
+        features = self.backbone(x)
+        model_out = self.model_head(features)
+        year_out = self.year_head(features)
+        return model_out, year_out
