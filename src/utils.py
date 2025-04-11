@@ -72,7 +72,7 @@ def build_records(json_dict_path, file_txt):
             "image_path": record["image_path"],
             "model_id": record.get("model_id"),
             "year": record.get("year")
-            #"viewpoint": record.get("viewpoint"),  # If you later want to use these
+            #"viewpoint": record.get("viewpoint"),  
             #"bbox": record.get("bbox")
         })
     

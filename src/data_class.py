@@ -7,14 +7,13 @@ class CarsDataset(Dataset):
         self.data = train_records
         self.transform = transform
 
-        # Build mapping for year labels (preserving non-numeric entries like "unknown")
+        # Build mapping for year labels 
         all_years = {record["year"] for record in self.data}
         all_years = sorted(list(all_years), key=lambda x: (x == "unknown", x))
         self.year2index = {year: idx for idx, year in enumerate(all_years)}
         # print("Year mapping:", self.year2index)
 
         # Build mapping for model labels:
-        # We'll treat the raw model_id (stored as a string) as a key and assign contiguous indices.
         all_models = {record["model_id"] for record in self.data}
         # Sort by numeric value (if they are numeric strings)
         all_models = sorted(list(all_models), key=lambda x: int(x))

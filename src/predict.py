@@ -4,12 +4,11 @@ from torchvision import transforms
 from utils import load_config
 import pandas as pd
 
-# Example definitions for load_model() and preprocess_image()
 config = load_config()
 
 def preprocess_image(img):
     # If img is a file path (string or bytes), open it;
-    # if it's already a PIL Image, use it directly.
+    # if it's already a PIL Image, use 
     if isinstance(img, (str, bytes)):
         image = Image.open(img).convert("RGB")
     elif isinstance(img, Image.Image):

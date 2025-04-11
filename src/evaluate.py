@@ -1,5 +1,6 @@
 from tqdm import tqdm
 
+# simple evalation loop
 def evaluate_model(model, val_loader, criterion, device):
     model.eval()
     val_running_loss = 0.0
@@ -7,7 +8,7 @@ def evaluate_model(model, val_loader, criterion, device):
     correct_year = 0
     total = 0
 
-    # Wrap your DataLoader with tqdm to monitor progress
+    # Wrap DataLoader with tqdm to monitor progress
     for images, labels in tqdm(val_loader, desc="Evaluating"):
         images = images.to(device)
         model_labels = labels[0].to(device)

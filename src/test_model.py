@@ -26,6 +26,8 @@ def test_model():
     num_year_classes = len(unique_years)
     print(num_model_classes, num_year_classes)
 
+    # wrong model
+    # deprecated
     model = MultiTaskResNet50(num_model_classes, num_year_classes)
 
     model.load_state_dict(torch.load(final_model_path))

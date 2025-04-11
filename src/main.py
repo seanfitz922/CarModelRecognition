@@ -25,6 +25,7 @@ def main():
     
     # print(f"Found {num_year_classes} unique year classes: {sorted(unique_years)}")
     
+    # deprecated
     model = MultiTaskResNet50(num_model_classes, num_year_classes)
     
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")

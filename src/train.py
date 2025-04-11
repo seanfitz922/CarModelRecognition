@@ -1,4 +1,5 @@
 
+# simple training loop
 def train_epoch(model, train_loader, criterion, optimizer, device):
     model.train()
     running_loss = 0.0
