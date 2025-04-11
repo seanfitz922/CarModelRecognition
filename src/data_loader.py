@@ -15,14 +15,14 @@ test_df = pd.read_csv(config['test_csv_path'])
 
 # Define separate transforms for training and validation
 train_transforms = transforms.Compose([
-    transforms.Resize((224, 224)),
+    transforms.Resize((384, 384)),
     transforms.RandomHorizontalFlip(),
     transforms.ToTensor(),
     transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
 ])
 
 val_transforms = transforms.Compose([
-    transforms.Resize((224, 224)),
+    transforms.Resize((384, 384)),
     transforms.ToTensor(),
     transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
 ])
