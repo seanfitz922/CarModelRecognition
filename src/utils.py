@@ -2,6 +2,10 @@ import yaml
 import pandas as pd
 import random
 import json
+import torch
+import timm
+import pandas as pd
+
 
 # load yaml with hyperparameters
 def load_config(config_path="C:/Users/seanf/Desktop/School/Pattern Recognition/CarModelRecognition/config/config.yaml"):
@@ -88,3 +92,12 @@ def random_split(train_data):
     val_indices = indices[train_size:]
 
     return train_indices, val_indices
+
+def load_model():
+    config = load_config()
+    model = timm.create_model('efficientnetv2_rw_m', pretrained=False, num_classes=config['num_classes'])
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    model.load_state_dict(torch.load(config['final_model_path'], map_location=device))
+    model.to(device)
+    model.eval()
+    return model, device

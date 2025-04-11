@@ -3,6 +3,7 @@ from tkinterdnd2 import DND_FILES, TkinterDnD
 import tkinter.filedialog as fd
 from PIL import Image, ImageTk
 from predict import predict_image
+from utils import load_model
 
 
 
@@ -25,6 +26,8 @@ class MyFrame(ctk.CTkFrame):
         # Keep a reference to the displayed image.
         self.display_image = None
 
+        self.model, self.device = load_model()
+
     def drop(self, event):
         # event.data may contain multiple file paths; here we process the first one.
         files = self.tk.splitlist(event.data)
@@ -35,10 +38,12 @@ class MyFrame(ctk.CTkFrame):
     def process_image(self, file_path):
         """Process the image, create a thumbnail and update the drop label."""
         try:
+            print(f"File dropped: {file_path}")
+
             img = Image.open(file_path)
             # print(img)
 
-            predicted_model = predict_image(img)
+            predicted_model = predict_image(img, self.model, self.device)
             print(predicted_model)
 
             img.thumbnail((400, 400))  # Adjust size as needed.

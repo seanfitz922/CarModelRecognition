@@ -16,9 +16,9 @@ train_csv_path: "C:/Users/seanf/Desktop/School/Pattern Recognition/CarModelRecog
 car_names_csv: "C:/Users/seanf/Desktop/School/Pattern Recognition/CarModelRecognition/data/cars_annotations_with_names.csv"
 model_save_path: "C:/Users/seanf/Desktop/School/Pattern Recognition/CarModelRecognition"
 json_dict_path: "C:/Users/seanf/Desktop/School/Pattern Recognition/CarModelRecognition/data/combined_mapping.json"
-final_model_path: "C:/Users/seanf/Desktop/School/Pattern Recognition/CarModelRecognition/final_model.pth"
+final_model_path: "C:/Users/seanf/Desktop/car_model/final_model_final.pth"
 make_model_name_mat: "C:/Users/seanf/Desktop/School/Pattern Recognition/CarModelRecognition/data/compcars/data/misc/make_model_name.mat"
 # Other
 # fix me find dynamically
-num_classes: 1716
+num_classes: 196
 num_car_makes: 163
